@@ -26,6 +26,9 @@ trait RequestHeader {
    */
   def connection: RemoteConnection
 
+  /**
+   * Return a new copy of the request with its connection changed.
+   */
   def withConnection(newConnection: RemoteConnection): RequestHeader =
     new RequestHeaderImpl(newConnection, method, target, version, headers, attrs)
 
@@ -95,7 +98,7 @@ trait RequestHeader {
   def headers: Headers
 
   /**
-   * The remote connection that made the request.
+   * Return a new copy of the request with its headers changed.
    */
   def withHeaders(newHeaders: Headers): RequestHeader =
     new RequestHeaderImpl(connection, method, target, version, newHeaders, attrs)
